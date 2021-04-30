@@ -1,0 +1,64 @@
+﻿@model IEnumerable<WebApplication1.ViewModels.ProjectListViewModel>
+
+@{
+    ViewData["Title"] = "Projects Page";
+}
+
+<div class="cont">
+    <h3 class="myheader3 clr-green">Projects</h3>
+
+    @foreach (var project in Model)
+    {
+        <div class="btn myheader5 colapse clr-green">@project.Name</div>
+        <div class="content bg-colapsed info-box">
+            <p class="title-info clr-title">Description:</p>
+            <p class="descrip clr-green">@project.Description</p>
+            <div class="line-top bg-lang"></div>
+            <div class="">
+                <div class="infobtnholder">
+                    <div class="btn mybtn link-btn mybg-dark">Github link</div>
+                    <div class="btn mybtn link-btn mybg-dark">Preview</div>
+                </div>
+                <div class="info-block">
+                    <div class="d-flex">
+                        <p class="title-info clr-title">focus:</p>
+                        <p class="clr-green">@project.FocusOn</p>
+                    </div>
+                    <div class="d-flex">
+                        <p class="title-info clr-title">finished:</p>
+                        @if (project.isFinished)
+                        {
+                            <p class="clr-green">
+                                Yes
+                            </p>
+                        }
+                        else
+                        {
+                            <p class="clr-red">
+                                No
+                            </p>
+                        }
+                    </div>
+                    <div class="d-flex">
+                        <div class="btn mybtn mybg-dark">Edit Project</div>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="line-bottom bg-lang"></div>
+            <div class="d-flex cont-lang">
+                @if (project.MadeWith.Count <= 0)
+                {
+                    <div class="clr-orange">There are no entries</div>
+                }
+                @foreach (var lang in project.MadeWith)
+                {
+                    <div class="lang-display bg-lang ">@lang</div>
+                }
+            </div>
+        </div>
+    }
+    <div class="btn myheader5 colapse clr-green">+</div>
+
+</div> 

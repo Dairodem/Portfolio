@@ -1,0 +1,64 @@
+﻿
+
+
+body{
+    background-color: #101010;
+}
+
+.mybg-dark {
+    background-color: #404040;
+}
+.clr-mynav-brand :hover :focus, .clr-orange{
+    color: rgb(189, 156, 48);
+}
+.clr-green {
+    color: rgb(155, 212, 97);
+}
+.clr-red {
+    color: rgb(155, 20, 2);
+}
+.clr-net {
+    color: rgb(64 136 220);
+}
+.clr-cs {
+    color: rgb(25 230 235);
+}
+.clr-html {
+    color: rgb(255 151 50);
+}
+.clr-css {
+    color: rgb(235 225 10);
+}
+.clr-js {
+    color: rgb(143 217 3);
+}
+.clr-console {
+    color: rgb(36 224 40);
+}
+.clr-forms {
+    color: rgb(238 91 255);
+}
+.clr-wpf {
+    color: rgb(134 104 255);
+}
+.clr-asp {
+    color: rgb(255 121 121);
+}
+.bg-green {
+    background-color: rgb(155, 212, 97);
+}
+.mybtn:hover {
+    background-color: rgb(155 212 97 / 0.6);
+}
+.bg-colapsed {
+    background-color: #303030;
+}
+.bg-lang{
+    background-color: rgb(68 68 68 / 0.87);
+}
+.clr-title {
+    color: #ddff2f;
+}
+.link-btn {
+    color: #92a34e;
+}
