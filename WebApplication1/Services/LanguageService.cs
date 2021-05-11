@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WebApplication1.Data;
+using WebApplication1.Database;
 using WebApplication1.DTOs;
 
 namespace WebApplication1.Services
@@ -17,8 +18,8 @@ namespace WebApplication1.Services
     }
     public class LanguageService : ILanguageService
     {
-        private readonly aDatabase _appDB;
-        public LanguageService(aDatabase db)
+        private readonly AppDbContext _appDB;
+        public LanguageService(AppDbContext db)
         {
             _appDB = db;
         }
@@ -47,14 +48,12 @@ namespace WebApplication1.Services
         {
             var newLang = new Language
             {
-                Id = GetNewId(),
                 Name = lang.Name,
             };
 
             _appDB.Languages.Add(newLang);
 
-            // if there was a database:
-            //_appDB.SaveChanges();
+            _appDB.SaveChanges();
 
         }
         public void Update(int id, LanguageDTO lang)
@@ -65,8 +64,7 @@ namespace WebApplication1.Services
             {
                 oldLang.Name = lang.Name;
 
-                // if there was a database:
-                //_appDB.SaveChanges();
+                _appDB.SaveChanges();
             }
 
         }
@@ -77,22 +75,8 @@ namespace WebApplication1.Services
             {
                 _appDB.Languages.Remove(lang);
 
-                // if there was a database:
-                //_appDB.SaveChanges();
+                _appDB.SaveChanges();
             }
-        }
-        private int GetNewId()
-        {
-            int id = 0;
-            for (int i = 0; i < _appDB.Languages.Count; i++)
-            {
-                if (_appDB.Languages[i].Id > id)
-                {
-                    id = _appDB.Languages[i].Id;
-                }
-            }
-
-            return id;
         }
     }
 }

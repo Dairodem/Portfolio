@@ -3,13 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace WebApplication1.Data
+namespace WebApplication2.Domain
 {
-    public class ProjectLanguage
+    public class Test
     {
         public int Id { get; set; }
-        public int ProjectId { get; set; }
-        public int LanguageId { get; set; }
-
+        public string Name { get; set; }
     }
 }

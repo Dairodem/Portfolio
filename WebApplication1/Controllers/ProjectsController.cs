@@ -32,15 +32,40 @@ namespace WebApplication1.Controllers
                     Name = x.Name,
                     Description = x.Description,
                     FocusOn = x.FocusOn,
+                    GithubUrl = x.GithubUrl,
+                    LocalUrl = x.LocalUrl,
                     isFinished = x.isFinished,
                     MadeWith = x.MadeWith
 
                 });
+                      
+            return View(vm);
+        }
+        public IActionResult Create()
+        {
+            return View(new ProjectCreateViewModel());
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Create([FromForm]ProjectCreateViewModel vm)
+        {
+            if (ModelState.IsValid)
+            {
+                var project = new ProjectDTO
+                {
+                    Name = vm.Name,
+                    Description = vm.Description,
+                    FocusOn = vm.FocusOn,
+                    GithubUrl = vm.GithubUrl,
+                    LocalUrl = vm.LocalUrl,
+                    isFinished = vm.isFinished,
 
+                };
+                _ps.Create(project);
+                return RedirectToAction(nameof(Index));
 
+            }
             
-
-
             return View(vm);
         }
     }

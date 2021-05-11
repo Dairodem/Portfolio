@@ -62,7 +62,6 @@
     white-space: normal;
 }
 .myheader3{ 
-    text-align:center;
     font-size: 2.5rem;
     font-family: neutonEbold;
     text-decoration: underline;
@@ -154,5 +153,50 @@
 }
 .link-btn{
     padding: 0.7rem;
+}
+.newBtn{
+    font-size: 2.5rem;
+}
+.createwindow{
+    margin-left:10%;
+    margin-right:10%;
+    border-radius: 20px;
+}
+.createhead {
+    border-radius: 20px 20px 0px 0px;
+    padding-bottom: 5px;
+    margin-bottom:10px;
+}
+.inputline, .inputfield {
+    margin: auto;
+    width: 80%;
+    border: solid 1px #ddff2f;
+}
+.inputname {
+    margin: auto;
+    width: 50%;
+    border: solid 1px #ddff2f;
+}
+.inputfield{
+    height:150px;
+    resize:none;
+}
+.form-control:focus {
+    background: #303030;
+    color: #ddff2f;
+    border: solid 2px #bd9c30;
+    box-shadow:none;
+}
+.align{
+    margin-top:5px;
+    width:10%;
+}
+.chkbox {
+    height: 30px;
+    width: 80%;
+}
+.form-group label{
+    font-weight:600;
+
 }
 

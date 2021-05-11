@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WebApplication1.Data;
+using WebApplication1.Database;
 using WebApplication1.DTOs;
 
 namespace WebApplication1.Services
@@ -12,14 +13,13 @@ namespace WebApplication1.Services
         IEnumerable<ProjectLanguageDTO> GetMany();
         void Create(ProjectLanguageDTO projectLang);
         void Delete(int id);
-        int GetNewId();
         
     }
     public class ProjectLanguageService : IProjectLanguageService
     { 
-        private readonly aDatabase _db;
+        private readonly AppDbContext _db;
 
-        public ProjectLanguageService(aDatabase db)
+        public ProjectLanguageService(AppDbContext db)
         {
             _db = db;
         }
@@ -30,8 +30,8 @@ namespace WebApplication1.Services
                 new ProjectLanguageDTO
                 {
                     Id = x.Id,
-                    ProjectId = x.ProjectId,
-                    LanguageId = x.LanguageId
+                    Project = x.Project,
+                    Language = x.Language
                 });
 
             return list;
@@ -41,30 +41,18 @@ namespace WebApplication1.Services
             var newProjLang =
                 new ProjectLanguage
                 {
-                    Id = GetNewId(),
-                    ProjectId = projectLang.ProjectId,
-                    LanguageId = projectLang.LanguageId
+                    Project = projectLang.Project,
+                    Language = projectLang.Language
                 };
 
             _db.ProjectLanguages.Add(newProjLang);
+            _db.SaveChanges();
         }
         public void Delete(int id)
         {
             var pl = _db.ProjectLanguages.SingleOrDefault(x => x.Id == id);
             _db.ProjectLanguages.Remove(pl);
-        }
-        public int GetNewId()
-        {
-            int id = 0;
-            for (int i = 0; i < _db.ProjectLanguages.Count; i++)
-            {
-                if (_db.ProjectLanguages[i].Id > id)
-                {
-                    id = _db.ProjectLanguages[i].Id;
-                }
-            }
-
-            return id;
+            _db.SaveChanges();
         }
     }
 }

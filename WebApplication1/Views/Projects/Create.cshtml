@@ -1,0 +1,46 @@
+﻿@model WebApplication1.ViewModels.ProjectCreateViewModel
+
+
+
+<div class="myheader3 clr-green cont">Create New Project</div>
+
+
+<div class="createwindow mybg-dark">
+    <form asp-action="Create">
+        <div class="createhead bg-colapsed">
+            <div class="form-group text-center">
+                <label asp-for="Name" class="clr-title"></label>
+                <input asp-for="Name" class="form-control inputname mybg-black" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group cont d-flex">
+            <label asp-for="Description" class="clr-title align"></label>
+            <input asp-for="Description" class="form-control inputfield mybg-black" />
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+        <div class="form-group cont d-flex">
+            <label asp-for="FocusOn" class="clr-title align"></label>
+            <input asp-for="FocusOn" class="form-control inputline mybg-black" />
+            <span asp-validation-for="FocusOn" class="text-danger"></span>
+        </div>
+        <div class="form-group cont d-flex">
+            <label asp-for="GithubUrl" class="clr-title align"></label>
+            <input asp-for="GithubUrl" class="form-control inputline mybg-black" />
+            <span asp-validation-for="GithubUrl" class="text-danger"></span>
+        </div>
+        <div class="form-group cont d-flex">
+            <label asp-for="LocalUrl" class="clr-title align"></label>
+            <input asp-for="LocalUrl" class="form-control inputline mybg-black" />
+            <span asp-validation-for="LocalUrl" class="text-danger"></span>
+        </div>
+        <div class="form-group cont d-flex">
+            <label asp-for="isFinished" class="clr-title align"></label>
+            <input type="checkbox" asp-for="isFinished" class="chkbox mybg-black" />
+        </div>
+        <div class="form-group text-center">
+            <input type="submit" value="Create" class="btn link-btn mybtn" />
+            <a asp-action="Index" class="btn link-btn mybtn">back to list</a>
+        </div>
+    </form>
+</div>

@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WebApplication1.Data;
+using WebApplication1.Database;
 using WebApplication1.Services;
 
 namespace WebApplication1
@@ -30,9 +31,9 @@ namespace WebApplication1
             services.AddTransient<ILanguageService, LanguageService>();
             services.AddTransient<IProjectLanguageService, ProjectLanguageService>();
 
-            services.AddDbContext<aDatabase>();
-
-
+            services.AddDbContext<AppDbContext>(options =>
+                options.UseSqlServer(
+                    Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddControllersWithViews();
         }

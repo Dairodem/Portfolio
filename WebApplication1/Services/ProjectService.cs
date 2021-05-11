@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WebApplication1.Data;
+using WebApplication1.Database;
 using WebApplication1.DTOs;
 
 namespace WebApplication1.Services
@@ -17,18 +18,20 @@ namespace WebApplication1.Services
     }
     public class ProjectService : IProjectService
     {
-        private readonly aDatabase _appDB;
-        private readonly IProjectLanguageService _plService;
-        public ProjectService(aDatabase db, IProjectLanguageService pl)
+        private readonly AppDbContext _appDb;
+        private readonly IProjectLanguageService _pls;
+        private readonly ILanguageService _ls;
+        public ProjectService(AppDbContext pdb, IProjectLanguageService pls, ILanguageService ls)
         {
-            _appDB = db;
-            _plService = pl;
+            _appDb = pdb;
+            _pls = pls;
+            _ls = ls;
         }
         public ProjectDetailDTO GetById(int id)
         {
-            var project = _appDB.Projects.Where(x => x.Id == id).FirstOrDefault();
-            var languages = _appDB.Languages.Select(x => x);
-            var pl = _appDB.ProjectLanguages.Select(x => x);
+            var project = _appDb.Projects.Where(x => x.Id == id).FirstOrDefault();
+            var languages = _appDb.Languages.ToList();
+            var pl = _appDb.ProjectLanguages.ToList();
 
             return new ProjectDetailDTO 
             {
@@ -39,28 +42,14 @@ namespace WebApplication1.Services
                 LocalUrl = project.LocalUrl,
                 FocusOn = project.FocusOn,
                 isFinished = project.isFinished,
-                MadeWith = pl.GroupJoin(languages,
-                                            p => p.LanguageId,
-                                            l => l.Id,
-                                            (p, l) => new
-                                            {
-                                                Name = languages.
-                                                        Where(n => n.Id == p.LanguageId).
-                                                        Select(v => v.Name).
-                                                        FirstOrDefault(),
-                                                projId = p.ProjectId
-                                            }).
-                                            Where(s => s.projId == project.Id).
-                                            Select(t => t.Name).ToList()
 
             };
         }
         public IEnumerable<ProjectListDTO> GetMany()
         {
-            var languages = _appDB.Languages.Select(x => x);
-            var pl = _appDB.ProjectLanguages.Select(x => x);
+            var languages = _ls.GetMany().Select(x => x);
 
-            var projects = _appDB.Projects.
+            var projects = _appDb.Projects.
                 Select(x =>
                 new ProjectListDTO
                 {
@@ -71,30 +60,16 @@ namespace WebApplication1.Services
                     LocalUrl = x.LocalUrl,
                     FocusOn = x.FocusOn,
                     isFinished = x.isFinished,
-                    MadeWith = pl.GroupJoin(languages,
-                                            p => p.LanguageId,
-                                            l => l.Id,
-                                            (p, l) => new
-                                            {
-                                                Name = languages.
-                                                        Where(n => n.Id == p.LanguageId).
-                                                        Select(v => v.Name).
-                                                        FirstOrDefault(),
-                                                projId = p.ProjectId
-                                            }).
-                                            Where(s => s.projId == x.Id).
-                                            Select(t => t.Name).ToList()
+                    MadeWith = 
+                    _pls.GetMany().Where(f => f.Project.Id == x.Id).Select(s => s.Language.Name).ToList()
                 });
-
 
             return projects;
         }
         public void Create(ProjectDTO project)
         {
-            int newId = GetNewId();
             var newProject = new Project
             {
-                Id = newId,
                 Name = project.Name,
                 Description = project.Description,
                 GithubUrl = project.GithubUrl,
@@ -103,34 +78,37 @@ namespace WebApplication1.Services
                 isFinished = project.isFinished,
             };
 
+            _appDb.Projects.Add(newProject);
+            _appDb.SaveChanges();
+
+            int projectId = _appDb.Projects.Where(x => x.Name == newProject.Name).Select(x => x.Id).FirstOrDefault(); 
+
             //create entries in project-language list
-            foreach (var lang in project.MadeWith)
+            if (project.MadeWith != null)
             {
+                //foreach (var lang in project.MadeWith)
+                //{
 
-                var newPL = new ProjectLanguage
-                {
-                    Id = _plService.GetNewId(),
-                    ProjectId = newId,
-                    LanguageId = _appDB.Languages.
-                                        Where(x => x.Name == lang).
-                                        Select(x => x.Id).
-                                        SingleOrDefault()
-                };
+                //    var newPL = new ProjectLanguage
+                //    {
+                //        Project = projectId,
+                //        LanguageId = _appDb.Languages.
+                //                            Where(x => x.Name == lang).
+                //                            Select(x => x.Id).
+                //                            SingleOrDefault()
+                //    };
 
-                _appDB.ProjectLanguages.Add(newPL);
-                //_appDB.SaveChanges();
+                //    _appDb.ProjectLanguages.Add(newPL);
+                //    _appDb.SaveChanges();
 
+                //}
             }
 
-            _appDB.Projects.Add(newProject);
-
-            // if there was a database:
-            //_appDB.SaveChanges();
 
         }
         public void Update(int id, ProjectDTO project)
         {
-            var oldProj = _appDB.Projects.SingleOrDefault(x => x.Id == id);
+            var oldProj = _appDb.Projects.SingleOrDefault(x => x.Id == id);
 
             if (oldProj != null)
             {
@@ -139,30 +117,23 @@ namespace WebApplication1.Services
                 oldProj.FocusOn = project.FocusOn;
                 oldProj.isFinished = project.isFinished;
 
-                // if there was a database:
-                //_appDB.SaveChanges();
+                _appDb.SaveChanges();
             }
 
         }
         public void Delete(int id)
         {
-            var Proj = _appDB.Projects.SingleOrDefault(x => x.Id == id);
-            if (Proj != null)
-            {
-                _appDB.Projects.Remove(Proj);
-
-                // if there was a database:
-                //_appDB.SaveChanges();
-            }
         }
         private int GetNewId()
         {
             int id = 0;
-            for (int i = 0; i < _appDB.Projects.Count; i++)
+            var list = _appDb.Projects.ToList();
+
+            for (int i = 0; i < list.Count; i++)
             {
-                if (_appDB.Projects[i].Id > id)
+                if (list[i].Id > id)
                 {
-                    id = _appDB.Projects[i].Id;
+                    id = list[i].Id;
                 }
             }
 
