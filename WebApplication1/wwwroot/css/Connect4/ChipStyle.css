@@ -1,0 +1,51 @@
+﻿
+
+.chip {
+    position: absolute;
+    left: 0px;
+    top: -75px;
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
+    margin-left: 15px;
+    margin-top: 15px;
+}
+.ring {
+    width: 90%;
+    height: 90%;
+    border-radius: 50%;
+    left: 50%;
+    bottom: 50%;
+    margin: 5% 5%;
+    background-image: radial-gradient( rgba(219, 208, 208, 0.473), rgba(70, 69, 69, 0), rgba(78, 78, 78, 0.568));
+    background-color: rgba(0, 0, 0, 0.205);
+}
+.ring-l {
+    border: solid black 2px;
+}
+.ring-s {
+    border: solid black .7px;
+}
+.score-chip {
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    padding:5%;
+}
+
+.chipindex {
+    z-index: 0;
+}
+
+.red {
+    background-color: rgb(236, 5, 5);
+}
+
+.yellow {
+    background-color: rgb(220, 241, 23);
+}
+
+.gray {
+    background-color: rgb(92, 92, 91);
+}
+

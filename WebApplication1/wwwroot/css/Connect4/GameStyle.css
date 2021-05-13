@@ -1,0 +1,126 @@
+﻿
+
+.board {
+    width: 600px;
+    height: 400px;
+    left: 50%;
+    position: absolute;
+    margin-left: -300px;
+    border: solid rgb(85, 85, 85) 2px;
+}
+
+.colSelect {
+    position: absolute;
+    height: 400px;
+    width: 100px;
+    border-style: groove;
+    border-width: 5px;
+}
+
+.space {
+    position: relative;
+    height: 480px;
+    min-width: 620px;
+    padding: 10px;
+}
+
+.canvas {
+    width: 600px;
+    height: 400px;
+    position: absolute;
+    left: 50%;
+    margin-left: -300px;
+    margin-top: 50px;
+}
+
+.currplayer {
+    margin-bottom:20px;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.startbtn {
+    font-size: 12px;
+    padding-top: 12px;
+    margin-left: 5px;
+}
+
+.minibtn {
+    line-height: 1.5;
+    height: 50%;
+    width: 20px;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 0px;
+    margin: 0px 5px;
+}
+.sideblock {
+    display: inline-block;
+    width: 300px;
+    height: 480px;
+    margin-left: 5px;
+}
+
+.screen {
+    margin: auto;
+    padding: 5px;
+}
+
+.side-cont {
+    text-align: center;
+    width: 100%;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+.sideheader {
+    border-bottom: solid black 2px;
+}
+
+    .sideheader label {
+        text-decoration: underline;
+        font-size: 40px;
+        font-weight: 900;
+    }
+
+.sidesubh label {
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.adjRoundholder {
+    margin-top: 5px;
+    border: solid black 2px;
+    padding: 10px;
+}
+
+.adjbtnholder {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+.midholder{
+    margin-top:10px;
+}
+
+.roundnumber {
+    line-height: 3;
+    height: 100%;
+    width: 50px;
+    margin: 0px;
+}
+
+.boards {
+    display: flex;
+}
+
+.border-s {
+    border: solid black 1px;
+}
+
+.border-m {
+    border: solid black 2px;
+}
+.dBorder {
+    border: groove rgb(58, 57, 57) 5px;
+}

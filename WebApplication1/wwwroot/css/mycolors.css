@@ -1,13 +1,8 @@
 ﻿
+/*
+    ---- ForegroundColors ----
 
-
-body, .mybg-black{
-    background-color: #101010;
-}
-
-.mybg-dark {
-    background-color: #404040;
-}
+*/
 .clr-mynav-brand :hover :focus, .clr-orange{
     color: rgb(189, 156, 48);
 }
@@ -44,6 +39,29 @@ body, .mybg-black{
 .clr-asp {
     color: rgb(255 121 121);
 }
+.clr-title {
+    color: #ddff2f;
+}
+.link-btn {
+    color: #92a34e;
+}
+.player-yellow {
+    color: rgb(215, 236, 28);
+}
+.player-red {
+    color: rgb(255, 70, 70);
+}
+
+/*
+    ---- BackgroundColors ----
+
+*/
+body, .mybg-black {
+    background-color: #101010;
+}
+.mybg-dark {
+    background-color: #404040;
+}
 .bg-green {
     background-color: rgb(155, 212, 97);
 }
@@ -56,9 +74,21 @@ body, .mybg-black{
 .bg-lang{
     background-color: rgb(68 68 68 / 0.87);
 }
-.clr-title {
-    color: #ddff2f;
+.bg-yellow {
+    background-color: rgba(215, 236, 28, 0.60);
 }
-.link-btn {
-    color: #92a34e;
+.bg-red {
+    background-color: rgb(255, 70, 70, 0.60);
+}
+
+/*
+    ---- BorderColors ----
+
+*/
+.border-yellow {
+    border-color: rgba(216, 236, 28, 0.493);
+}
+
+.border-red {
+    border-color: rgba(182, 65, 65, 0.493);
 }

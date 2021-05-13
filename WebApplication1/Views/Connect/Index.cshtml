@@ -1,0 +1,131 @@
+﻿
+
+
+<body onload="startGame()">
+    <div class="d-flex">
+        <div class="screen mybg-dark d-flex">
+            <div id="space" class="space bg-dGreen dBorder">
+                <div id="canvas" class="canvas bg-dGreen">
+
+
+                    <div id="chip" class="chip yellow">
+                        <div class="ring ring-l">
+                        </div>
+                    </div>
+
+                    <img id="overlay" class="board" src="~/Resources/Images/Board.png" />
+
+                    <div id="selector" class="colSelect border-yellow">
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div class="bg-dGreen sideblock dBorder side-cont">
+
+                <div class="sideheader myheader5 clr-green">
+                    <label>
+                        Connect4
+                    </label>
+                </div>
+
+                <div>
+                    <div class="inputarea">
+                        <div class="adjRoundholder">
+                            <div class="sidesubh">
+                                <label class="clr-green">
+                                    best of:
+                                </label>
+                            </div>
+                            <div class="d-flex">
+                                <div class="adjbtnholder">
+
+                                    <label id="lblRounds" class="roundnumber border-s bg-mGreen clr-green">
+                                        x
+                                    </label>
+                                </div>
+
+                                <div class="adjbtnholder">
+                                    <div class="btn minibtn border-s clr-green" onclick="changeRounds(2)">
+                                        +
+                                    </div>
+                                    <div class="btn minibtn border-s clr-green" onclick="changeRounds(-2)">
+                                        -
+                                    </div>
+                                </div>
+                                <div class="btn startbtn border-s clr-green" onclick="resetBoard()">
+                                    <label>
+                                        Start!
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="midholder">
+                        <div class="sidesubh">
+                            <label class="clr-green">
+                                Current Player:
+                            </label>
+                        </div>
+                        <div>
+                            <label id="currPlayerColor" class="currplayer player-yellow">
+                                YELLOW
+                            </label>
+                        </div>
+                    </div>
+
+
+
+
+
+                    <div class="score-board border-m">
+                        <div class="score-header">
+                            <label class="clr-green">
+                                Score
+                            </label>
+                        </div>
+
+                        <div class="boards">
+                            <div class="border-yellow container">
+                                <div style="width: 20px;">
+                                    <label id="score-yellow">0</label>
+                                    <div class="score-chip gray">
+                                        <div class="ring ring-s"></div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="border-red container">
+                                <div style="width: 20px;">
+                                    <label id="score-red">0</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+
+
+    </div>
+
+
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script src="~/js/Connect4/Main.js"></script>
+
+<script src="~/js/Connect4/AdjustRounds.js"></script>
+<script src="~/js/Connect4/ChipControl.js"></script>
+<script src="~/js/Connect4/FollowMouse.js"></script>
+<script src="~/js/Connect4/SelectorMovement.js"></script>
+<script src="~/js/Connect4/ChangePlayer.js"></script>
+
+<script src="~/js/Connect4/Engine.js"></script>
+
+
