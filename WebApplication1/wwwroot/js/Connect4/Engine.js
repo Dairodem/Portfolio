@@ -1,8 +1,10 @@
 ﻿let allChips = [];
 let chipCount = 0;
 
-function startGame() {
+function startGame()
+{
     gameState.start();
+    setScoreNeeded();
     ChangeColor(playerColor);
 }
 
@@ -17,34 +19,46 @@ var gameState =
 }
 
 function update() {
-    if (isfalling) {
+    if (isfalling)
+    {
         moveDown(currChip);
     }
-    if (isWinner) {
-        console.log(playerColor + " has won!");
-        let playerscore = document.getElementById("score-" + playerColor);
-        let score = parseInt(playerscore.innerHTML);
-        score++;
-        playerscore.innerHTML = score.toString();
+    if (isWinner)
+    {
+        SetLblScoreText(playerColor + " has won!");
+        let score = IncreaseScore(playerColor);
         gameState.stop();
-        resetBoard();
 
-        if (score === (parseInt(rounds / 2)) + 1) {
+        if (score === scoreNeeded)
+        {
             gameOver(playerColor);
+        }
+        else
+        {
+            ResetBoard();
         }
     }
 }
-function resetBoard() {
+function StartNewGame()
+{
+    rounds = parseInt(document.getElementById("lblRounds").innerHTML);
+    ResetScoreBoard();
+    setAllScoreChips();
+    ResetBoard();
+}
+function ResetBoard()
+{
     //remove all chips
     getAllChips();
 
-    for (let i = 0; i < chipCount; i++) {
+    for (let i = 0; i < chipCount; i++)
+    {
         let elem = allChips[0].remove();
     }
+
     //clear field
     clearField();
     resetPositionArr();
-
 
     //change startplayer
     ChangeColor(playerColor === "yellow" ? currColor = "red" : currColor = "yellow");
@@ -58,7 +72,7 @@ function getAllChips() {
     allChips = document.getElementsByClassName("chipindex");
     chipCount = allChips.length;
 }
-function gameOver(winnerName) {
-    console.log(winnerName + " has won the Game!");
-    gameState.stop();
+function gameOver(winnerName)
+{
+    SetLblScoreText(winnerName + " has won the Game!");
 }

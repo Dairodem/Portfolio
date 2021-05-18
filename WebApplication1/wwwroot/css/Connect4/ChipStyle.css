@@ -24,13 +24,14 @@
     border: solid black 2px;
 }
 .ring-s {
-    border: solid black .7px;
+    border: solid black 1px;
 }
 .score-chip {
     border-radius: 50%;
     width: 20px;
     height: 20px;
     padding:5%;
+    margin:1px;
 }
 
 .chipindex {

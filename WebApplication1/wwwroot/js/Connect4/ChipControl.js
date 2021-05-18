@@ -63,6 +63,7 @@ function NewChip(color)
     this.newChip.classList.add("chipindex");
     this.newChip.classList.add(color);
     this.ring.classList.add("ring");
+    this.ring.classList.add("ring-l");
 
     const canvas = document.getElementById("canvas");
     canvas.insertBefore(this.newChip, chip);

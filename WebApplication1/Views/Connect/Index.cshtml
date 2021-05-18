@@ -41,20 +41,20 @@
                             <div class="d-flex">
                                 <div class="adjbtnholder">
 
-                                    <label id="lblRounds" class="roundnumber border-s bg-mGreen clr-green">
+                                    <label id="lblRounds" class="roundnumber border-s border-black bg-mGreen clr-green">
                                         x
                                     </label>
                                 </div>
 
                                 <div class="adjbtnholder">
-                                    <div class="btn minibtn border-s clr-green" onclick="changeRounds(2)">
+                                    <div class="btn minibtn border-s border-black clr-green" onclick="changeRounds(2)">
                                         +
                                     </div>
-                                    <div class="btn minibtn border-s clr-green" onclick="changeRounds(-2)">
+                                    <div class="btn minibtn border-s border-black clr-green" onclick="changeRounds(-2)">
                                         -
                                     </div>
                                 </div>
-                                <div class="btn startbtn border-s clr-green" onclick="resetBoard()">
+                                <div class="btn startbtn border-s border-black clr-green" onclick="StartNewGame()">
                                     <label>
                                         Start!
                                     </label>
@@ -76,11 +76,7 @@
                         </div>
                     </div>
 
-
-
-
-
-                    <div class="score-board border-m">
+                    <div class="border-m border-black">
                         <div class="score-header">
                             <label class="clr-green">
                                 Score
@@ -88,21 +84,21 @@
                         </div>
 
                         <div class="boards">
-                            <div class="border-yellow container">
-                                <div style="width: 20px;">
-                                    <label id="score-yellow">0</label>
-                                    <div class="score-chip gray">
-                                        <div class="ring ring-s"></div>
-                                    </div>
+                            <div class="border-m border-yellow cont">
+                                <div id="board-yellow" class="board-yellow">
+                                    <!--place for score-chips-->
                                 </div>
 
                             </div>
-                            <div class="border-red container">
-                                <div style="width: 20px;">
-                                    <label id="score-red">0</label>
+                            <div class="border-m border-red cont">
+                                <div id="board-red" class="board-red">
+                                    <!--place for score-chips-->
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <div>
+                        <label id="lblScoreText" class="clr-green"></label>
                     </div>
 
                 </div>

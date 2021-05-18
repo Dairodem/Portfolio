@@ -11,7 +11,7 @@ namespace WebApplication1.Services
     public interface IProjectService
     {
         ProjectDetailDTO GetById(int id);
-        IEnumerable<ProjectListDTO> GetMany();
+        Task<IEnumerable<ProjectListDTO>> GetMany();
         void Create(ProjectDTO project);
         void Update(int id, ProjectDTO project);
         void Delete(int id);
@@ -45,9 +45,9 @@ namespace WebApplication1.Services
 
             };
         }
-        public IEnumerable<ProjectListDTO> GetMany()
+        public async Task<IEnumerable<ProjectListDTO>> GetMany()
         {
-            var languages = _ls.GetMany().Select(x => x);
+            var languages = await  _ls.GetMany();
 
             var projects = _appDb.Projects.
                 Select(x =>

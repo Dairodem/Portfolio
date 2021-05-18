@@ -1,6 +1,11 @@
 ﻿
-
+/*
+ *---- Declarations
+ */
 let rounds = 3;
+let scoreNeeded = 0;
+let scoreYellow = 0;
+let scoreRed = 0;
 let isWinner = false;
 let posArr = [300, 300, 300, 300, 300, 300];
 let field =
@@ -10,7 +15,17 @@ let field =
         [0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0]
     ];
+let lblScore = document.getElementById("lblScoreText");
+/*
+ *---- Start 
+ */
 
+setAllScoreChips();
+
+
+/*
+ * ---- Functions
+ */
 function getState(colorname) {
     let state = 0;
     switch (colorname) {
@@ -141,4 +156,73 @@ function clearField() {
 }
 function resetPositionArr() {
     posArr = [300, 300, 300, 300, 300, 300];
+}
+function setScoreNeeded()
+{
+    scoreNeeded = parseInt(rounds / 2) + 1;
+}
+function newScoreChip(id)
+{
+    let newChip = document.createElement("div");
+    let ring = document.createElement("div");
+    newChip.appendChild(ring);
+
+    newChip.classList.add("score-chip");
+    newChip.id = "score-chip-" + id;
+    newChip.classList.add("gray");
+    ring.classList.add("ring");
+    ring.classList.add("ring-s");
+
+    return newChip;
+}
+function setAllScoreChips()
+{
+    setScoreNeeded();
+
+    RemoveAllChildren("board-yellow");
+    RemoveAllChildren("board-red");
+
+    for (var i = 0; i < scoreNeeded; i++)
+    {
+        document.getElementById("board-yellow").appendChild(newScoreChip("yellow-" + (i+1)));
+        document.getElementById("board-red").appendChild(newScoreChip("red-" + (i+1)));
+    }
+}
+function RemoveAllChildren(id)
+{
+    while (document.getElementById(id).firstChild) {
+        document.getElementById(id).removeChild(document.getElementById(id).firstChild);
+    }
+}
+function IncreaseScore(mycolor)
+{
+    let s = 0;
+    switch (mycolor) {
+        case "red":
+            scoreRed++;
+            s = scoreRed;
+            break;
+        case "yellow":
+            scoreYellow++;
+            s = scoreYellow;
+            break;
+        default:
+            console.log("no score set!");
+            break;
+    }
+    let c = document.getElementById("score-chip-" + mycolor + "-" + s);
+    c.classList.remove("gray");
+    c.classList.add(mycolor);
+
+    return s;
+}
+function SetLblScoreText(text)
+{
+    lblScore.innerHTML = text;
+}
+function ResetScoreBoard()
+{
+    scoreRed, scoreYellow = 0;
+    SetLblScoreText("");
+    setAllScoreChips();
 }

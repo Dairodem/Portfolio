@@ -21,11 +21,10 @@ namespace WebApplication1.Controllers
             _ls = ls;
             _pls = pls;
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-
-            var vm = _ps.
-                GetMany().
+            var list = await _ps.GetMany();
+            var vm = list.
                 Select(x =>
                 new ProjectListViewModel
                 {

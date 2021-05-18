@@ -86,9 +86,12 @@ body, .mybg-black {
 
 */
 .border-yellow {
-    border-color: rgba(216, 236, 28, 0.493);
+    border-color: rgba(216, 236, 28, .9);
 }
 
 .border-red {
-    border-color: rgba(182, 65, 65, 0.493);
+    border-color: rgba(182, 65, 65, .9);
+}
+.border-black{
+    border-color: black;
 }

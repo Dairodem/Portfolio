@@ -11,7 +11,7 @@ namespace WebApplication1.Services
     public interface ILanguageService
     {
         LanguageDTO GetById(int id);
-        IEnumerable<LanguageListDTO> GetMany();
+        Task<IEnumerable<LanguageListDTO>> GetMany();
         void Create(LanguageDTO project);
         void Update(int id, LanguageDTO project);
         void Delete(int id);
@@ -33,7 +33,7 @@ namespace WebApplication1.Services
                 Name = lang.Name,
             };
         }
-        public IEnumerable<LanguageListDTO> GetMany()
+        public async Task<IEnumerable<LanguageListDTO>> GetMany()
         {
             var langList = _appDB.Languages.
                 Select(x =>
